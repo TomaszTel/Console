@@ -1,0 +1,7 @@
+C:\Users\Telwak\source\repos\Konsola\Konsola\bin\Release\Konsola.exe.config
+C:\Users\Telwak\source\repos\Konsola\Konsola\bin\Release\Konsola.exe
+C:\Users\Telwak\source\repos\Konsola\Konsola\bin\Release\Konsola.pdb
+C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Release\Konsola.csprojAssemblyReference.cache
+C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Release\Konsola.csproj.CoreCompileInputs.cache
+C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Release\Konsola.exe
+C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Release\Konsola.pdb

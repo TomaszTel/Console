@@ -7,7 +7,7 @@ namespace Konsola
 {
 
 
-    class MainMenu
+    class MainMenus
     {
         public static bool Utworzenie { get; set; }
         public static int IDLast { get; set; }
@@ -195,26 +195,30 @@ namespace Konsola
         public static void AddEdit(bool Edit, string Data, string Opis, int ID)
         {
           
-
-            Dane DaneN = new Dane();
             if (IDLast == 0 && Edit == false)
             {
-                DaneN.ID = 1;
+                ID = 1;
                 IDLast++;
+
+                AddToClass(ID,Data,Opis);
             }
             else if (IDLast != 0 && Edit == false)
             {
-                DaneN.ID = IDLast + 1;
+                ID = IDLast + 1;
+                AddToClass(ID, Data, Opis);
             }
             else if (Edit == true)
             {
-                DaneN.ID = ID;
+                AddToClass(ID, Data, Opis);
             }
-            DaneN.Data = Data;
-            DaneN.Opis = Opis;
-            DaneNowe.Add(DaneN);
+            
             Console.Clear();
             Main();
+        }
+        public static void AddToClass(int ID, string Data, string Opis)
+        {
+            Dane DaneN = new Dane(ID, Data, Opis);
+            DaneNowe.Add(DaneN);
         }
         public static void List()
         {
@@ -327,6 +331,9 @@ namespace Konsola
         }
         public static void ToRemove(int DoUsuniecia)
         {
+            CheckOBJ checkOBJ = new CheckOBJ();
+          //  bool Check = checkOBJ.(DaneNowe);
+
             var ObiektDousuniecia = DaneNowe.Single(r => r.ID == DoUsuniecia);
             DaneNowe.Remove(ObiektDousuniecia);
         }
@@ -350,6 +357,7 @@ namespace Konsola
             Console.Clear();
             Main();
         }
+        
 
     }
 }

@@ -11,7 +11,7 @@ namespace Konsola
     {
         public static bool Utworzenie { get; set; }
         public static int IDLast { get; set; }
-        static List<Dane> DaneNowe;
+        static IList<Dane> DaneNowe;
         
         public enum Menu
         {
@@ -60,19 +60,19 @@ namespace Konsola
             switch (Number)
             {
                 case "1":
-                    Lista();
+                    List();
                     break;
                 case "2":
-                    Dodaj();
+                    ADD();
                     break;
                 case "3":
-                    Modyfikuj();
+                    Modifi();
                     break;
                 case "4":
-                    Usuwanie();
+                    Delete();
                     break;
                 case "5":
-                    Podglad();
+                    Preview();
                     break;
                 case "6":
                     Environment.Exit(0);
@@ -87,7 +87,7 @@ namespace Konsola
             }
 
         }
-        public static void Modyfikuj()
+        public static void Modifi()
         {
             try
             {
@@ -101,7 +101,7 @@ namespace Konsola
                 IEnumerable WyszukajID = Search(KonwersjaID);
                 if (WyszukajID.Cast<Object>().Count() == 0)
                 {
-                    BrakID();
+                    MissingID();
                 }
 
                 foreach (Dane wysz in WyszukajID)
@@ -118,7 +118,7 @@ namespace Konsola
 
                     if (Potwierdzenie == "Y" || Potwierdzenie == "y")
                     {
-                        DoUsuniecia(KonwersjaID);
+                        ToRemove(KonwersjaID);
                         AddEdit(true,DataM,OpisM, KonwersjaID);
 
                     }
@@ -147,7 +147,7 @@ namespace Konsola
             
         }
 
-        public static void Dodaj()
+        public static void ADD()
         {
 
             Console.Title = "Dodawanie rekordu";
@@ -216,7 +216,7 @@ namespace Konsola
             Console.Clear();
             Main();
         }
-        public static void Lista()
+        public static void List()
         {
             Console.Title = "Lista rekordów";
             Console.Clear();
@@ -227,7 +227,11 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("ID\t||Data\t        ||Opis\t");
             Console.ForegroundColor = ConsoleColor.Green;
-            DaneNowe.ForEach(i => Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID,i.Data,i.Opis,Environment.NewLine));
+           // DaneNowe.ForEach(i => Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID,i.Data,i.Opis,Environment.NewLine));
+           foreach(var i in DaneNowe)
+            {
+                Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
+            }
             Console.WriteLine(Environment.NewLine);
             
             Console.WriteLine("\nNacisnij dowolny klawisz aby powrócić..");
@@ -249,7 +253,7 @@ namespace Konsola
             
             
         }
-        public static void Podglad()
+        public static void Preview()
         {
             try {
                 Console.Title = "Szczegóły rekordu";
@@ -289,7 +293,7 @@ namespace Konsola
                 Error();
             }
         }
-        public static void Usuwanie()
+        public static void Delete()
         {
             try {
                 Console.Title = "Usuwanie rekordu";
@@ -304,7 +308,7 @@ namespace Konsola
             if (ElementDoUsuniecia.Cast<Object>().Count() > 0)
             {
                 Console.Clear();
-                    DoUsuniecia(Konwersja);
+                    ToRemove(Konwersja);
                     Console.WriteLine("\nUsunięto Wpis o ID :" + Konwersja);
                     Console.ReadKey();
                     Console.Clear();
@@ -313,7 +317,7 @@ namespace Konsola
             }
             else
             {
-                    BrakID();
+                    MissingID();
             }
             }catch(FormatException)
             {
@@ -321,7 +325,7 @@ namespace Konsola
             }
 
         }
-        public static void DoUsuniecia(int DoUsuniecia)
+        public static void ToRemove(int DoUsuniecia)
         {
             var ObiektDousuniecia = DaneNowe.Single(r => r.ID == DoUsuniecia);
             DaneNowe.Remove(ObiektDousuniecia);
@@ -336,7 +340,7 @@ namespace Konsola
             Console.Clear();
             Main();
         }
-        public static void BrakID()
+        public static void MissingID()
         {
             Console.Title = "Błąd - Brak ID";
             Console.Clear();

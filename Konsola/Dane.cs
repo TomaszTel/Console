@@ -7,4 +7,7 @@ namespace Konsola
         public string Data { get; set; }
         public string Opis { get; set; }
     }
+
+
+
 }

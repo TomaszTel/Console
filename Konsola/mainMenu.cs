@@ -101,20 +101,17 @@ namespace Konsola
             {
                 Main();
             }
-            IEnumerable WyszukajID = Search(ID_Parse);
-            if (WyszukajID.Cast<Object>().Count() == 0)
+            Dane WyszukajID = Search(ID_Parse);
+            if (WyszukajID == null)
             {
                 MissingID();
             }
-
-            foreach (Dane wysz in WyszukajID)
-            {
+            
                 Console.Write("\nData: ");
-                System.Windows.Forms.SendKeys.SendWait(wysz.Data.ToShortDateString());
+                System.Windows.Forms.SendKeys.SendWait(WyszukajID.Data.ToShortDateString());
                 string DataM = Console.ReadLine();
-
                 Console.Write("\nOpis: ");
-                System.Windows.Forms.SendKeys.SendWait(wysz.Opis);
+                System.Windows.Forms.SendKeys.SendWait(WyszukajID.Opis);
                 string OpisM = Console.ReadLine();
 
                 if (!ParseDate(DataM))
@@ -145,7 +142,7 @@ namespace Konsola
 
                     Main();
                 }
-            }
+            
 
 
 
@@ -255,17 +252,10 @@ namespace Konsola
 
             Main();
         }
-        public static IEnumerable Search(int ID)
+        public static Dane Search(int ID)
         {
-
-
-            var Rekordy = from Rekord in DaneNowe
-                          where Rekord.ID == ID
-                          select Rekord;
-
-            return Rekordy;
-
-
+              var Search =  DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
+                 return Search;
         }
         public static void Preview()
         {
@@ -282,8 +272,8 @@ namespace Konsola
             {
                 Main();
             }
-            IEnumerable SearchResoult = Search(ID_Parse);
-            if (SearchResoult.Cast<Object>().Count() == 0)
+            Dane SearchResoult = Search(ID_Parse);
+            if (SearchResoult == null)
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -292,15 +282,13 @@ namespace Konsola
 
             }
 
-
-            foreach (Dane value in SearchResoult)
-            {
+            
                 Console.Clear();
-                Console.WriteLine("ID:" + value.ID);
-                Console.WriteLine("Data:" + value.Data);
-                Console.WriteLine("Opis:" + value.Opis);
+                Console.WriteLine("ID:" + SearchResoult.ID);
+                Console.WriteLine("Data:" + SearchResoult.Data);
+                Console.WriteLine("Opis:" + SearchResoult.Opis);
                 Console.WriteLine(Environment.NewLine);
-            }
+            
 
             Console.Write("\nNaciśnij dowolny klawisz aby powrócić..");
             Console.ReadKey();
@@ -322,8 +310,8 @@ namespace Konsola
                 Main();
             }
 
-            var ElementDoUsuniecia = Search(ID_Parse);
-            if (ElementDoUsuniecia.Cast<Object>().Count() > 0)
+            Dane ElementDoUsuniecia = Search(ID_Parse);
+            if (ElementDoUsuniecia != null)
             {
                 Console.Clear();
                 ToRemove(ID_Parse);
@@ -342,8 +330,8 @@ namespace Konsola
         }
         public static void ToRemove(int DoUsuniecia)
         {
-
-            var ObiektDousuniecia = DaneNowe.Single(r => r.ID == DoUsuniecia);
+           
+            var ObiektDousuniecia = DaneNowe.Where(r => r.ID == DoUsuniecia).FirstOrDefault();
             var ObiektDousuniecia1 = DaneNowe.IndexOf(ObiektDousuniecia);
             DaneNowe.RemoveAt(ObiektDousuniecia1);
         }

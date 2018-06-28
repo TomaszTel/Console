@@ -12,7 +12,8 @@ namespace Konsola
         public static bool Utworzenie { get; set; }
         public static int IDLast { get; set; }
         static IList<Dane> DaneNowe;
-        
+        public static DateTime DateParse;
+
         public enum Menu
         {
             Lista = 1,
@@ -107,19 +108,25 @@ namespace Konsola
                 foreach (Dane wysz in WyszukajID)
                 {
                     Console.Write("\nData: ");
-                    System.Windows.Forms.SendKeys.SendWait(wysz.Data);
+                    System.Windows.Forms.SendKeys.SendWait(wysz.Data.ToShortDateString());
                     string DataM = Console.ReadLine();
+                   
                     Console.Write("\nOpis: ");
                     System.Windows.Forms.SendKeys.SendWait(wysz.Opis);
                     string OpisM = Console.ReadLine();
-              
+                    
+                   if(!ParseDate(DataM))
+                    {
+                        Main();
+                    }
+
                     Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
                     string Potwierdzenie = Console.ReadLine();
 
                     if (Potwierdzenie == "Y" || Potwierdzenie == "y")
                     {
                         ToRemove(KonwersjaID);
-                        AddEdit(true,DataM,OpisM, KonwersjaID);
+                        AddEdit(true, DateParse, OpisM, KonwersjaID);
 
                     }
                     else if (Potwierdzenie == "N" || Potwierdzenie == "n")
@@ -157,6 +164,11 @@ namespace Konsola
             Console.Write("\nData: ");
             
             string Data = Console.ReadLine();
+            if (!ParseDate(Data))
+            {
+                Main();
+            }
+
             Console.Write("\nOpis: ");
             string Opis = Console.ReadLine();
             
@@ -173,7 +185,7 @@ namespace Konsola
                 }
 
 
-                AddEdit(false,Data,Opis,IDLast);
+                AddEdit(false, DateParse, Opis,IDLast);
             }
             else if (Potwierdzenie == "N" || Potwierdzenie =="n")
             {
@@ -192,7 +204,7 @@ namespace Konsola
             
 
         }
-        public static void AddEdit(bool Edit, string Data, string Opis, int ID)
+        public static void AddEdit(bool Edit, DateTime Data, string Opis, int ID)
         {
           
             if (IDLast == 0 && Edit == false)
@@ -215,7 +227,7 @@ namespace Konsola
             Console.Clear();
             Main();
         }
-        public static void AddToClass(int ID, string Data, string Opis)
+        public static void AddToClass(int ID, DateTime Data, string Opis)
         {
             Dane DaneN = new Dane(ID, Data, Opis);
             DaneNowe.Add(DaneN);
@@ -331,9 +343,7 @@ namespace Konsola
         }
         public static void ToRemove(int DoUsuniecia)
         {
-            CheckOBJ checkOBJ = new CheckOBJ();
-          //  bool Check = checkOBJ.(DaneNowe);
-
+          
             var ObiektDousuniecia = DaneNowe.Single(r => r.ID == DoUsuniecia);
             DaneNowe.Remove(ObiektDousuniecia);
         }
@@ -357,7 +367,19 @@ namespace Konsola
             Console.Clear();
             Main();
         }
-        
+        public static bool ParseDate(string DataM)
+        {
+            if (!DateTime.TryParse(DataM, out DateParse))
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Wprowadzono nie poprawny format daty!");
+                Console.WriteLine(Environment.NewLine);
+
+                return false;
+            }
+            return true;
+        }
 
     }
 }

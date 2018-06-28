@@ -16,13 +16,7 @@ namespace Konsola
             Data = data;
             Opis = opis;
         }
-        public override bool Equals(Object obj)
-        {
-            if (!(obj is Dane CheckOBJ))
-                return false;
-            else
-                return obj.Equals(CheckOBJ.ID);
-        }
+     
     }
     
 }

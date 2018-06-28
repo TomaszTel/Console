@@ -5,3 +5,10 @@ C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Debug\Konsola.csproj.CoreCompil
 C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Debug\Konsola.exe
 C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Debug\Konsola.pdb
 C:\Users\Telwak\source\repos\Konsola\Konsola\obj\Debug\Konsola.csprojAssemblyReference.cache
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Konsola.exe.config
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Konsola.exe
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Konsola.pdb
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csprojAssemblyReference.cache
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csproj.CoreCompileInputs.cache
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.exe
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.pdb

@@ -11,6 +11,7 @@ namespace Konsola
     {
         public static bool Utworzenie { get; set; }
         public static int IDLast { get; set; }
+        public static int ID_Parse { get; set; }
         static IList<Dane> DaneNowe;
         public static DateTime DateParse;
 
@@ -23,33 +24,32 @@ namespace Konsola
             Podgląd,
             Zakoncz,
             
-            
         }
-       
+
 
         static void Main()
         {
-            Console.Title= "Main Menu";
+            Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
             if (Utworzenie == false)
             {
                 DaneNowe = new List<Dane>();
                 Utworzenie = true;
             }
-          
+
 
             string wybor = Wybierz_Menu();
             CheckNumber(wybor);
         }
 
-      
-        public static string  Wybierz_Menu()
+
+        public static string Wybierz_Menu()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Main Menu:");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{5}1) {0}{5}2) {1}{5}3) {2}{5}4) {3}{5}5) {4}{5}6) {6}{5}",  Menu.Lista,  Menu.Dodawanie, Menu.Edycja, 
-            Menu.Usuwanie, Menu.Podgląd, Environment.NewLine,Menu.Zakoncz);
+            Console.WriteLine("{5}1) {0}{5}2) {1}{5}3) {2}{5}4) {3}{5}5) {4}{5}6) {6}{5}", Menu.Lista, Menu.Dodawanie, Menu.Edycja,
+            Menu.Usuwanie, Menu.Podgląd, Environment.NewLine, Menu.Zakoncz);
             Console.Write("\nWybierz Akcje: ");
             return Console.ReadLine();
 
@@ -90,68 +90,66 @@ namespace Konsola
         }
         public static void Modifi()
         {
-            try
+
+            Console.Title = "Edycja Rekordu";
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(Menu.Edycja);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\nID: ");
+            string ID = Console.ReadLine();
+            if (!ParseID(ID))
             {
-                Console.Title = "Edycja Rekordu";
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine(Menu.Edycja);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("\nID: ");
-                string ID = Console.ReadLine();
-                int KonwersjaID = Int32.Parse(ID);
-                IEnumerable WyszukajID = Search(KonwersjaID);
-                if (WyszukajID.Cast<Object>().Count() == 0)
+                Main();
+            }
+            IEnumerable WyszukajID = Search(ID_Parse);
+            if (WyszukajID.Cast<Object>().Count() == 0)
+            {
+                MissingID();
+            }
+
+            foreach (Dane wysz in WyszukajID)
+            {
+                Console.Write("\nData: ");
+                System.Windows.Forms.SendKeys.SendWait(wysz.Data.ToShortDateString());
+                string DataM = Console.ReadLine();
+
+                Console.Write("\nOpis: ");
+                System.Windows.Forms.SendKeys.SendWait(wysz.Opis);
+                string OpisM = Console.ReadLine();
+
+                if (!ParseDate(DataM))
                 {
-                    MissingID();
+                    Main();
                 }
 
-                foreach (Dane wysz in WyszukajID)
+                Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
+                string Potwierdzenie = Console.ReadLine();
+
+                if (Potwierdzenie == "Y" || Potwierdzenie == "y")
                 {
-                    Console.Write("\nData: ");
-                    System.Windows.Forms.SendKeys.SendWait(wysz.Data.ToShortDateString());
-                    string DataM = Console.ReadLine();
-                   
-                    Console.Write("\nOpis: ");
-                    System.Windows.Forms.SendKeys.SendWait(wysz.Opis);
-                    string OpisM = Console.ReadLine();
-                    
-                   if(!ParseDate(DataM))
-                    {
-                        Main();
-                    }
+                    ToRemove(ID_Parse);
+                    AddEdit(true, DateParse, OpisM, ID_Parse);
 
-                    Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
-                    string Potwierdzenie = Console.ReadLine();
+                }
+                else if (Potwierdzenie == "N" || Potwierdzenie == "n")
+                {
+                    Console.Clear();
+                    Main();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Red;
 
-                    if (Potwierdzenie == "Y" || Potwierdzenie == "y")
-                    {
-                        ToRemove(KonwersjaID);
-                        AddEdit(true, DateParse, OpisM, KonwersjaID);
+                    Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
 
-                    }
-                    else if (Potwierdzenie == "N" || Potwierdzenie == "n")
-                    {
-                        Console.Clear();
-                        Main();
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-
-                        Main();
-                    }
+                    Main();
                 }
             }
-            catch(FormatException)
-            {
-                Error();
-            }
-         
 
-            
+
+
+
         }
 
         public static void ADD()
@@ -162,7 +160,7 @@ namespace Konsola
             Console.WriteLine(Menu.Dodawanie);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nData: ");
-            
+
             string Data = Console.ReadLine();
             if (!ParseDate(Data))
             {
@@ -171,23 +169,23 @@ namespace Konsola
 
             Console.Write("\nOpis: ");
             string Opis = Console.ReadLine();
-            
-                Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
-            
+
+            Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
+
             string Potwierdzenie = Console.ReadLine();
 
-            if (Potwierdzenie == "Y" || Potwierdzenie =="y")
+            if (Potwierdzenie == "Y" || Potwierdzenie == "y")
             {
-            
+
                 if (IDLast != 0)
                 {
                     IDLast = DaneNowe.Last().ID;
                 }
 
 
-                AddEdit(false, DateParse, Opis,IDLast);
+                AddEdit(false, DateParse, Opis, IDLast);
             }
-            else if (Potwierdzenie == "N" || Potwierdzenie =="n")
+            else if (Potwierdzenie == "N" || Potwierdzenie == "n")
             {
                 Console.Clear();
                 Main();
@@ -196,23 +194,23 @@ namespace Konsola
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
-                
+
                 Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-                
+
                 Main();
             }
-            
+
 
         }
         public static void AddEdit(bool Edit, DateTime Data, string Opis, int ID)
         {
-          
+
             if (IDLast == 0 && Edit == false)
             {
                 ID = 1;
                 IDLast++;
 
-                AddToClass(ID,Data,Opis);
+                AddToClass(ID, Data, Opis);
             }
             else if (IDLast != 0 && Edit == false)
             {
@@ -223,7 +221,7 @@ namespace Konsola
             {
                 AddToClass(ID, Data, Opis);
             }
-            
+
             Console.Clear();
             Main();
         }
@@ -243,13 +241,13 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("ID\t||Data\t        ||Opis\t");
             Console.ForegroundColor = ConsoleColor.Green;
-           // DaneNowe.ForEach(i => Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID,i.Data,i.Opis,Environment.NewLine));
-           foreach(var i in DaneNowe)
+            // DaneNowe.ForEach(i => Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID,i.Data,i.Opis,Environment.NewLine));
+            foreach (var i in DaneNowe)
             {
                 Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
             }
             Console.WriteLine(Environment.NewLine);
-            
+
             Console.WriteLine("\nNacisnij dowolny klawisz aby powrócić..");
 
             Console.ReadKey();
@@ -257,41 +255,45 @@ namespace Konsola
 
             Main();
         }
-        public static IEnumerable  Search(int ID)
+        public static IEnumerable Search(int ID)
         {
-             
-            
-            var Rekordy= from Rekord in DaneNowe
-                           where Rekord.ID == ID
-                           select Rekord;
+
+
+            var Rekordy = from Rekord in DaneNowe
+                          where Rekord.ID == ID
+                          select Rekord;
 
             return Rekordy;
-            
-            
+
+
         }
         public static void Preview()
         {
-            try {
-                Console.Title = "Szczegóły rekordu";
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine(Menu.Podgląd);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("\nWprowadz ID: ");
+
+            Console.Title = "Szczegóły rekordu";
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(Menu.Podgląd);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\nWprowadz ID: ");
             string ID = Console.ReadLine();
-            int Konwertacja = Int32.Parse(ID);
-            IEnumerable SearchResoult = Search(Konwertacja);
-                if (SearchResoult.Cast<Object>().Count() == 0)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.DarkYellow;
-                    Console.WriteLine("\nNie znaleziono Danych..{0}{0}", Environment.NewLine);
-                    Console.ForegroundColor = ConsoleColor.Green;
 
-                }
+            if (!ParseID(ID))
+            {
+                Main();
+            }
+            IEnumerable SearchResoult = Search(ID_Parse);
+            if (SearchResoult.Cast<Object>().Count() == 0)
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\nNie znaleziono Danych..{0}{0}", Environment.NewLine);
+                Console.ForegroundColor = ConsoleColor.Green;
+
+            }
 
 
-                foreach (Dane value in SearchResoult)
+            foreach (Dane value in SearchResoult)
             {
                 Console.Clear();
                 Console.WriteLine("ID:" + value.ID);
@@ -299,63 +301,69 @@ namespace Konsola
                 Console.WriteLine("Opis:" + value.Opis);
                 Console.WriteLine(Environment.NewLine);
             }
-                
+
             Console.Write("\nNaciśnij dowolny klawisz aby powrócić..");
             Console.ReadKey();
             Console.Clear();
             Main();
-               }catch(FormatException)
-            {
-                Error();
-            }
+
         }
         public static void Delete()
         {
-            try {
-                Console.Title = "Usuwanie rekordu";
-                Console.ForegroundColor = ConsoleColor.Magenta;
-                Console.WriteLine(Menu.Usuwanie);
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("\nWprowadż ID do usunięcia: ");
-            string ElementID = Console.ReadLine();
-            int Konwersja = Int32.Parse(ElementID);
 
-            var ElementDoUsuniecia = Search(Konwersja);
+            Console.Title = "Usuwanie rekordu";
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.WriteLine(Menu.Usuwanie);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("\nWprowadż ID do usunięcia: ");
+            string ElementID = Console.ReadLine();
+            if (!ParseID(ElementID))
+            {
+                Main();
+            }
+
+            var ElementDoUsuniecia = Search(ID_Parse);
             if (ElementDoUsuniecia.Cast<Object>().Count() > 0)
             {
                 Console.Clear();
-                    ToRemove(Konwersja);
-                    Console.WriteLine("\nUsunięto Wpis o ID :" + Konwersja);
-                    Console.ReadKey();
-                    Console.Clear();
-                    IDLast--;
-                    Main();
+                ToRemove(ID_Parse);
+                Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
+                Console.ReadKey();
+                Console.Clear();
+                IDLast--;
+                Main();
             }
             else
             {
-                    MissingID();
+                MissingID();
             }
-            }catch(FormatException)
-            {
-                Error();
-            }
+
 
         }
         public static void ToRemove(int DoUsuniecia)
         {
-          
+
             var ObiektDousuniecia = DaneNowe.Single(r => r.ID == DoUsuniecia);
-            DaneNowe.Remove(ObiektDousuniecia);
+            var ObiektDousuniecia1 = DaneNowe.IndexOf(ObiektDousuniecia);
+            DaneNowe.RemoveAt(ObiektDousuniecia1);
         }
-        public static void Error()
+        public static bool ParseID(string ID)
         {
-            Console.Title = "Błąd - Wprowadzono nie poprawną wartość";
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("\nWprowadzoną nie poprawną wartość...Naćiśnij dowolny klawisz aby powrócić do Menu..");
-            Console.ReadKey();
-            Console.Clear();
-            Main();
+
+            if (!int.TryParse(ID, out int a))
+            {
+                Console.Title = "Błąd - Wprowadzono nie poprawną wartość";
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\nWprowadzoną nie poprawną wartość...Naćiśnij dowolny klawisz aby powrócić do Menu..");
+                Console.ReadKey();
+                Console.Clear();
+                return false;
+            }
+            ID_Parse = a;
+            return true;
+
+
         }
         public static void MissingID()
         {
@@ -381,5 +389,7 @@ namespace Konsola
             return true;
         }
 
+
     }
 }
+//tt

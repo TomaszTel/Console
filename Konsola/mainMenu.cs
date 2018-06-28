@@ -67,7 +67,7 @@ namespace Konsola
                     ADD();
                     break;
                 case "3":
-                    Modifi();
+                    Edit();
                     break;
                 case "4":
                     Delete();
@@ -88,7 +88,7 @@ namespace Konsola
             }
 
         }
-        public static void Modifi()
+        public static void Edit()
         {
 
             Console.Title = "Edycja Rekordu";
@@ -125,9 +125,11 @@ namespace Konsola
                 if (Potwierdzenie == "Y" || Potwierdzenie == "y")
                 {
                     ToRemove(ID_Parse);
-                    AddEdit(true, DateParse, OpisM, ID_Parse);
 
-                }
+                AddToClass(ID_Parse, DateParse, OpisM);
+                Console.Clear();
+                Main();
+            }
                 else if (Potwierdzenie == "N" || Potwierdzenie == "n")
                 {
                     Console.Clear();
@@ -174,13 +176,21 @@ namespace Konsola
             if (Potwierdzenie == "Y" || Potwierdzenie == "y")
             {
 
-                if (IDLast != 0)
+                int IDNew;
+
+                if (DaneNowe.Count == 0)
                 {
-                    IDLast = DaneNowe.Last().ID;
+                    IDNew = 1;
+                }
+                else
+                {
+                    IDNew = DaneNowe.Last().ID;
+                    IDNew++;
                 }
 
+                AddToClass(IDNew, DateParse, Opis);
 
-                AddEdit(false, DateParse, Opis, IDLast);
+              //  Add(DateParse, Opis, IDLast);
             }
             else if (Potwierdzenie == "N" || Potwierdzenie == "n")
             {
@@ -197,27 +207,6 @@ namespace Konsola
                 Main();
             }
 
-
-        }
-        public static void AddEdit(bool Edit, DateTime Data, string Opis, int ID)
-        {
-
-            if (IDLast == 0 && Edit == false)
-            {
-                ID = 1;
-                IDLast++;
-
-                AddToClass(ID, Data, Opis);
-            }
-            else if (IDLast != 0 && Edit == false)
-            {
-                ID = IDLast + 1;
-                AddToClass(ID, Data, Opis);
-            }
-            else if (Edit == true)
-            {
-                AddToClass(ID, Data, Opis);
-            }
 
             Console.Clear();
             Main();

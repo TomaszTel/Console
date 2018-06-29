@@ -51,9 +51,11 @@
     <Compile Include="Enum_Menu.cs" />
     <Compile Include="List.cs" />
     <Compile Include="mainMenu.cs" />
+    <Compile Include="MenuClass.cs" />
     <Compile Include="Parse.cs" />
     <Compile Include="Preview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

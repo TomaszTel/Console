@@ -6,6 +6,10 @@ namespace Konsola
     {
         public void EdiRe()
         {
+            MenuClass menuClass = new MenuClass();
+            Validate validate = new Validate();
+
+
             Console.Title = "Edycja Rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(Enum_Menu.Menu.Edycja);
@@ -15,12 +19,12 @@ namespace Konsola
             Parse parse = new Parse();
             if (!parse.ParseID(ID))
             {
-                Select_Menu();
+                menuClass.Select_Menu();
             }
-            Dane WyszukajID = Search(ID_Parse);
+            Dane WyszukajID = validate.Search(ID_Parse);
             if (WyszukajID == null)
             {
-                MissingID();
+                validate.MissingID();
             }
 
             Console.Write("\nData: ");
@@ -39,19 +43,19 @@ namespace Konsola
             string Potwierdzenie = Console.ReadLine();
 
 
-            if (Confitmation(Potwierdzenie))
+            if (validate.Confitmation(Potwierdzenie))
             {
                 DeleteC delete = new DeleteC();                
                 delete.ToRemove(ID_Parse);
                 Add add = new Add();
                 add.AddToClass(ID_Parse, DateParse, OpisM);
                 Console.Clear();
-                Select_Menu();
+                menuClass.Select_Menu();
             }
             else
             {
                 Console.Clear();
-                Select_Menu();
+                menuClass.Select_Menu();
             }
 
         }

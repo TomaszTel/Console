@@ -5,8 +5,10 @@ namespace Konsola
 {
     class Add : MainMenus
     {
-        public  void ADD()
+
+        public void ADD()
         {
+            MenuClass menuClass = new MenuClass();
 
             Console.Title = "Dodawanie rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -19,7 +21,8 @@ namespace Konsola
 
             if (!parse.ParseDate(Data))
             {
-                Select_Menu();
+
+                menuClass.Select_Menu();
             }
 
             Console.Write("\nOpis: ");
@@ -28,8 +31,9 @@ namespace Konsola
             Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
 
             string Potwierdzenie = Console.ReadLine();
+            Validate validate = new Validate();
 
-            if (Confitmation(Potwierdzenie))
+            if (validate.Confitmation(Potwierdzenie))
             {
                 int IDNew;
                 if (DaneNowe.Count == 0)
@@ -48,10 +52,10 @@ namespace Konsola
             else
             {
                 Console.Clear();
-                Select_Menu();
+                menuClass.Select_Menu();
             }
             Console.Clear();
-            Select_Menu();
+            menuClass.Select_Menu();
         }
         public  void AddToClass(int ID, DateTime Data, string Opis)
         {

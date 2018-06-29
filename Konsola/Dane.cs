@@ -1,9 +1,10 @@
 ﻿
 using System;
+using System.Linq;
 
 namespace Konsola
 {
-    public class Dane
+     class Dane : MainMenus
     {
         public int ID { get; set; }
         public DateTime Data { get; set; }
@@ -16,7 +17,10 @@ namespace Konsola
             Data = data;
             Opis = opis;
         }
-     
+
+
+        
     }
+
     
 }

@@ -7,6 +7,8 @@ namespace Konsola
     {
         public void List()
         {
+            MenuClass menuClass = new MenuClass();
+
             Console.Title = "Lista rekordów";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -27,7 +29,7 @@ namespace Konsola
             Console.ReadKey();
             Console.Clear();
 
-            Select_Menu();
+            menuClass.Select_Menu();
         }
         
 

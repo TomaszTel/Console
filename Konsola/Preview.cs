@@ -9,6 +9,9 @@ namespace Konsola
         {
 
             Parse parse = new Parse();
+            MenuClass menuClass = new MenuClass();
+            Validate validate = new Validate();
+
 
             Console.Title = "Szczegóły rekordu";
             Console.Clear();
@@ -20,9 +23,10 @@ namespace Konsola
 
             if (!parse.ParseID(ID))
             {
-                Select_Menu();
+                menuClass.Select_Menu();
             }
-            Dane SearchResoult = Search(ID_Parse);
+
+            Dane SearchResoult = validate.Search(ID_Parse);
             if (SearchResoult == null)
             {
                 Console.Clear();
@@ -32,7 +36,8 @@ namespace Konsola
 
             }
 
-
+            else
+            { 
             Console.Clear();
             Console.WriteLine("ID:" + SearchResoult.ID);
             Console.WriteLine("Data:" + SearchResoult.Data);
@@ -43,7 +48,8 @@ namespace Konsola
             Console.Write("\nNaciśnij dowolny klawisz aby powrócić..");
             Console.ReadKey();
             Console.Clear();
-            Select_Menu();
+            }
+            menuClass.Select_Menu();
 
         }
     }

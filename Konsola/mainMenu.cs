@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 
 namespace Konsola
@@ -9,32 +9,27 @@ namespace Konsola
 
     class MainMenus
     {
-        public static bool Utworzenie { get; set; }
-        public static int IDLast { get; set; }
         public static int ID_Parse { get; set; }
         static IList<Dane> DaneNowe;
         public static DateTime DateParse;
+        public const string confirmationY = "Y";
+        public const string confirmationN = "N";
 
-        public enum Menu
-        {
-            Lista = 1,
-            Dodawanie,
-            Edycja,
-            Usuwanie,
-            Podgląd,
-            Zakoncz,
-            
-        }
+
 
 
         static void Main()
         {
+
+            Enum_Menu Menu = new Enum_Menu();
+
+
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
-            if (Utworzenie == false)
+            if (DaneNowe == null)
             {
                 DaneNowe = new List<Dane>();
-                Utworzenie = true;
+             
             }
 
 
@@ -48,8 +43,8 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Main Menu:");
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("{5}1) {0}{5}2) {1}{5}3) {2}{5}4) {3}{5}5) {4}{5}6) {6}{5}", Menu.Lista, Menu.Dodawanie, Menu.Edycja,
-            Menu.Usuwanie, Menu.Podgląd, Environment.NewLine, Menu.Zakoncz);
+            Console.WriteLine("{5}1) {0}{5}2) {1}{5}3) {2}{5}4) {3}{5}5) {4}{5}6) {6}{5}", Enum_Menu.Menu.Lista, Enum_Menu.Menu.Dodawanie, Enum_Menu.Menu.Edycja,
+            Enum_Menu.Menu.Usuwanie, Enum_Menu.Menu.Podgląd, Environment.NewLine, Enum_Menu.Menu.Zakoncz);
             Console.Write("\nWybierz Akcje: ");
             return Console.ReadLine();
 
@@ -93,7 +88,7 @@ namespace Konsola
 
             Console.Title = "Edycja Rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Menu.Edycja);
+            Console.WriteLine(Enum_Menu.Menu.Edycja);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nID: ");
             string ID = Console.ReadLine();
@@ -122,33 +117,41 @@ namespace Konsola
                 Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
                 string Potwierdzenie = Console.ReadLine();
 
-                if (Potwierdzenie == "Y" || Potwierdzenie == "y")
-                {
-                    ToRemove(ID_Parse);
+
+            if (Confitmation(Potwierdzenie))
+            {
+                ToRemove(ID_Parse);
 
                 AddToClass(ID_Parse, DateParse, OpisM);
                 Console.Clear();
                 Main();
             }
-                else if (Potwierdzenie == "N" || Potwierdzenie == "n")
-                {
-                    Console.Clear();
-                    Main();
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Red;
+            else
+            {
 
-                    Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-
-                    Main();
-                }
+                Console.Clear();
+                Main();
+            }
             
-
-
-
-
+        }
+        public static bool Confitmation(string Key)
+        {
+            if(Key == confirmationY)
+            {
+                return true;
+            }
+            else if(Key == confirmationN)
+            {
+                return false;
+            }
+            else
+            {
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
+                Main();
+                return false;
+            }
         }
 
         public static void ADD()
@@ -156,10 +159,9 @@ namespace Konsola
 
             Console.Title = "Dodawanie rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Menu.Dodawanie);
+            Console.WriteLine(Enum_Menu.Menu.Dodawanie);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nData: ");
-
             string Data = Console.ReadLine();
             if (!ParseDate(Data))
             {
@@ -173,11 +175,9 @@ namespace Konsola
 
             string Potwierdzenie = Console.ReadLine();
 
-            if (Potwierdzenie == "Y" || Potwierdzenie == "y")
+            if(Confitmation(Potwierdzenie))
             {
-
                 int IDNew;
-
                 if (DaneNowe.Count == 0)
                 {
                     IDNew = 1;
@@ -190,24 +190,12 @@ namespace Konsola
 
                 AddToClass(IDNew, DateParse, Opis);
 
-              //  Add(DateParse, Opis, IDLast);
-            }
-            else if (Potwierdzenie == "N" || Potwierdzenie == "n")
-            {
-                Console.Clear();
-                Main();
             }
             else
             {
                 Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-
-                Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-
                 Main();
             }
-
-
             Console.Clear();
             Main();
         }
@@ -221,13 +209,12 @@ namespace Konsola
             Console.Title = "Lista rekordów";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Menu.Lista);
+            Console.WriteLine(Enum_Menu.Menu.Lista);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(Environment.NewLine);
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("ID\t||Data\t        ||Opis\t");
             Console.ForegroundColor = ConsoleColor.Green;
-            // DaneNowe.ForEach(i => Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID,i.Data,i.Opis,Environment.NewLine));
             foreach (var i in DaneNowe)
             {
                 Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
@@ -252,7 +239,7 @@ namespace Konsola
             Console.Title = "Szczegóły rekordu";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Menu.Podgląd);
+            Console.WriteLine(Enum_Menu.Menu.Podgląd);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nWprowadz ID: ");
             string ID = Console.ReadLine();
@@ -290,7 +277,7 @@ namespace Konsola
 
             Console.Title = "Usuwanie rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Menu.Usuwanie);
+            Console.WriteLine(Enum_Menu.Menu.Usuwanie);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nWprowadż ID do usunięcia: ");
             string ElementID = Console.ReadLine();
@@ -307,7 +294,6 @@ namespace Konsola
                 Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
                 Console.ReadKey();
                 Console.Clear();
-                IDLast--;
                 Main();
             }
             else
@@ -354,6 +340,8 @@ namespace Konsola
         }
         public static bool ParseDate(string DataM)
         {
+           
+
             if (!DateTime.TryParse(DataM, out DateParse))
             {
                 Console.Clear();

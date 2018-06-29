@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Add.cs" />
     <Compile Include="Dane.cs" />
+    <Compile Include="Delete.cs" />
     <Compile Include="Edit.cs" />
     <Compile Include="Enum_Menu.cs" />
     <Compile Include="List.cs" />

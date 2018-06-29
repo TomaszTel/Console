@@ -41,7 +41,8 @@ namespace Konsola
 
             if (Confitmation(Potwierdzenie))
             {
-                ToRemove(ID_Parse);
+                DeleteC delete = new DeleteC();                
+                delete.ToRemove(ID_Parse);
                 Add add = new Add();
                 add.AddToClass(ID_Parse, DateParse, OpisM);
                 Console.Clear();

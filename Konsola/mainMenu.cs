@@ -25,8 +25,8 @@ namespace Konsola
 
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
-                DaneNowe = new List<Dane>();
-             Select_Menu();
+            DaneNowe = new List<Dane>();
+            Select_Menu();
             
         }
 
@@ -62,7 +62,8 @@ namespace Konsola
                     SEdit.EdiRe();
                     break;
                 case "4":
-                    Delete();
+                    DeleteC delete = new DeleteC();
+                    delete.Delete();
                     break;
                 case "5":
                     Preview preview = new Preview() ;
@@ -107,46 +108,6 @@ namespace Konsola
             return Search;
         }
 
-        public static void Delete()
-        {
-
-            Console.Title = "Usuwanie rekordu";
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Enum_Menu.Menu.Usuwanie);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\nWprowadż ID do usunięcia: ");
-            string ElementID = Console.ReadLine();
-            Parse parse = new Parse();
-            if (!parse.ParseID(ElementID))
-            {
-                Select_Menu();
-            }
-
-            Dane ElementDoUsuniecia = Search(ID_Parse);
-            if (ElementDoUsuniecia != null)
-            {
-                Console.Clear();
-                ToRemove(ID_Parse);
-                Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
-                Console.ReadKey();
-                Console.Clear();
-                Select_Menu();
-            }
-            else
-            {
-                MissingID();
-            }
-
-
-        }
-        public static void ToRemove(int DoUsuniecia)
-        {
-           
-            var ObiektDousuniecia = DaneNowe.Where(r => r.ID == DoUsuniecia).FirstOrDefault();
-            var ObiektDousuniecia1 = DaneNowe.IndexOf(ObiektDousuniecia);
-            DaneNowe.RemoveAt(ObiektDousuniecia1);
-        }
-     
         public static void MissingID()
         {
             Console.Title = "Błąd - Brak ID";

@@ -20,7 +20,9 @@ namespace Konsola
 
         static void Main()
         {
+
             Enum_Menu Menu = new Enum_Menu();
+
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
             if (DaneNowe == null)
@@ -28,22 +30,22 @@ namespace Konsola
                 DaneNowe = new List<Dane>();
              
             }
-            string wybor = Select_Menu();
-            CheckNumber(wybor);
+             Select_Menu();
+            
         }
 
 
-        public static string Select_Menu()
+        public static void Select_Menu()
         {
-            
+           
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Main Menu:");
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("{5}1) {0}{5}2) {1}{5}3) {2}{5}4) {3}{5}5) {4}{5}6) {6}{5}", Enum_Menu.Menu.Lista, Enum_Menu.Menu.Dodawanie, Enum_Menu.Menu.Edycja,
             Enum_Menu.Menu.Usuwanie, Enum_Menu.Menu.Podgląd, Environment.NewLine, Enum_Menu.Menu.Zakoncz);
             Console.Write("\nWybierz Akcje: ");
-            return Console.ReadLine();
-
+            string Wybor = Console.ReadLine();
+            CheckNumber(Wybor);
         }
         public static void CheckNumber(string Number)
         {
@@ -58,7 +60,8 @@ namespace Konsola
                     ADD();
                     break;
                 case "3":
-                    Edit();
+                    Edit SEdit = new Edit();
+                    SEdit.EdiRe();
                     break;
                 case "4":
                     Delete();
@@ -77,58 +80,7 @@ namespace Konsola
                     Select_Menu();
                     break;
             }
-
-        }
-        public static void Edit()
-        {
-
-            Console.Title = "Edycja Rekordu";
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Enum_Menu.Menu.Edycja);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\nID: ");
-            string ID = Console.ReadLine();
-            if (!ParseID(ID))
-            {
-                Main();
-            }
-            Dane WyszukajID = Search(ID_Parse);
-            if (WyszukajID == null)
-            {
-                MissingID();
-            }
-            
-                Console.Write("\nData: ");
-                System.Windows.Forms.SendKeys.SendWait(WyszukajID.Data.ToShortDateString());
-                string DataM = Console.ReadLine();
-                Console.Write("\nOpis: ");
-                System.Windows.Forms.SendKeys.SendWait(WyszukajID.Opis);
-                string OpisM = Console.ReadLine();
-
-                if (!ParseDate(DataM))
-                {
-                    Edit();
-                }
-
-                Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
-                string Potwierdzenie = Console.ReadLine();
-
-
-            if (Confitmation(Potwierdzenie))
-            {
-                ToRemove(ID_Parse);
-
-                AddToClass(ID_Parse, DateParse, OpisM);
-                Console.Clear();
-                Select_Menu();
-            }
-            else
-            {
-
-                Console.Clear();
-                Select_Menu();
-            }
-            
+           
         }
         public static bool Confitmation(string Key)
         {
@@ -336,8 +288,7 @@ namespace Konsola
         }
         public static bool ParseDate(string DataM)
         {
-           
-
+          
             if (!DateTime.TryParse(DataM, out DateParse))
             {
                 Console.Clear();

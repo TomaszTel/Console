@@ -20,10 +20,7 @@ namespace Konsola
 
         static void Main()
         {
-
             Enum_Menu Menu = new Enum_Menu();
-
-
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
             if (DaneNowe == null)
@@ -31,15 +28,14 @@ namespace Konsola
                 DaneNowe = new List<Dane>();
              
             }
-
-
-            string wybor = Wybierz_Menu();
+            string wybor = Select_Menu();
             CheckNumber(wybor);
         }
 
 
-        public static string Wybierz_Menu()
+        public static string Select_Menu()
         {
+            
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Main Menu:");
             Console.ForegroundColor = ConsoleColor.Green;
@@ -78,7 +74,7 @@ namespace Konsola
                     Console.Write("\nWybrano nie poprawny numer..");
                     Console.ReadKey();
                     Console.Clear();
-                    Main();
+                    Select_Menu();
                     break;
             }
 
@@ -111,7 +107,7 @@ namespace Konsola
 
                 if (!ParseDate(DataM))
                 {
-                    Main();
+                    Edit();
                 }
 
                 Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
@@ -124,13 +120,13 @@ namespace Konsola
 
                 AddToClass(ID_Parse, DateParse, OpisM);
                 Console.Clear();
-                Main();
+                Select_Menu();
             }
             else
             {
 
                 Console.Clear();
-                Main();
+                Select_Menu();
             }
             
         }
@@ -149,7 +145,7 @@ namespace Konsola
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-                Main();
+                Select_Menu();
                 return false;
             }
         }
@@ -165,7 +161,7 @@ namespace Konsola
             string Data = Console.ReadLine();
             if (!ParseDate(Data))
             {
-                Main();
+                Select_Menu();
             }
 
             Console.Write("\nOpis: ");
@@ -194,10 +190,10 @@ namespace Konsola
             else
             {
                 Console.Clear();
-                Main();
+                Select_Menu();
             }
             Console.Clear();
-            Main();
+            Select_Menu();
         }
         public static void AddToClass(int ID, DateTime Data, string Opis)
         {
@@ -226,7 +222,7 @@ namespace Konsola
             Console.ReadKey();
             Console.Clear();
 
-            Main();
+            Select_Menu();
         }
         public static Dane Search(int ID)
         {
@@ -246,7 +242,7 @@ namespace Konsola
 
             if (!ParseID(ID))
             {
-                Main();
+                Select_Menu();
             }
             Dane SearchResoult = Search(ID_Parse);
             if (SearchResoult == null)
@@ -269,7 +265,7 @@ namespace Konsola
             Console.Write("\nNaciśnij dowolny klawisz aby powrócić..");
             Console.ReadKey();
             Console.Clear();
-            Main();
+            Select_Menu();
 
         }
         public static void Delete()
@@ -283,7 +279,7 @@ namespace Konsola
             string ElementID = Console.ReadLine();
             if (!ParseID(ElementID))
             {
-                Main();
+                Select_Menu();
             }
 
             Dane ElementDoUsuniecia = Search(ID_Parse);
@@ -294,7 +290,7 @@ namespace Konsola
                 Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
                 Console.ReadKey();
                 Console.Clear();
-                Main();
+                Select_Menu();
             }
             else
             {
@@ -336,7 +332,7 @@ namespace Konsola
             Console.Write("\nNie znaleziono ID, naciśnij dowolny klawisz aby powrócić do Menu..");
             Console.ReadKey();
             Console.Clear();
-            Main();
+            Select_Menu();
         }
         public static bool ParseDate(string DataM)
         {
@@ -357,4 +353,3 @@ namespace Konsola
 
     }
 }
-//tt

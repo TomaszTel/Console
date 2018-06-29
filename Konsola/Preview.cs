@@ -8,6 +8,8 @@ namespace Konsola
         public  void PreviewV()
         {
 
+            Parse parse = new Parse();
+
             Console.Title = "Szczegóły rekordu";
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -16,7 +18,7 @@ namespace Konsola
             Console.Write("\nWprowadz ID: ");
             string ID = Console.ReadLine();
 
-            if (!ParseID(ID))
+            if (!parse.ParseID(ID))
             {
                 Select_Menu();
             }

@@ -14,7 +14,10 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nData: ");
             string Data = Console.ReadLine();
-            if (!ParseDate(Data))
+
+            Parse parse = new Parse();
+
+            if (!parse.ParseDate(Data))
             {
                 Select_Menu();
             }

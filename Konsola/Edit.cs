@@ -12,7 +12,8 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nID: ");
             string ID = Console.ReadLine();
-            if (!ParseID(ID))
+            Parse parse = new Parse();
+            if (!parse.ParseID(ID))
             {
                 Select_Menu();
             }
@@ -29,7 +30,7 @@ namespace Konsola
             System.Windows.Forms.SendKeys.SendWait(WyszukajID.Opis);
             string OpisM = Console.ReadLine();
 
-            if (!ParseDate(DataM))
+            if (!parse.ParseDate(DataM))
             {
                 EdiRe();
             }

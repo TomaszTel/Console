@@ -48,7 +48,9 @@
     <Compile Include="Dane.cs" />
     <Compile Include="Edit.cs" />
     <Compile Include="Enum_Menu.cs" />
+    <Compile Include="List.cs" />
     <Compile Include="mainMenu.cs" />
+    <Compile Include="Parse.cs" />
     <Compile Include="Preview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

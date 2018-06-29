@@ -50,7 +50,8 @@ namespace Konsola
             switch (Number)
             {
                 case "1":
-                    List();
+                    Lists lists = new Lists();
+                    lists.List();
                     break;
                 case "2":
                     Add add = new Add();
@@ -100,35 +101,10 @@ namespace Konsola
             }
         }
 
-        
-        public static void List()
-        {
-            Console.Title = "Lista rekordów";
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Enum_Menu.Menu.Lista);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(Environment.NewLine);
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("ID\t||Data\t        ||Opis\t");
-            Console.ForegroundColor = ConsoleColor.Green;
-            foreach (var i in DaneNowe)
-            {
-                Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
-            }
-            Console.WriteLine(Environment.NewLine);
-
-            Console.WriteLine("\nNacisnij dowolny klawisz aby powrócić..");
-
-            Console.ReadKey();
-            Console.Clear();
-
-            Select_Menu();
-        }
         public static Dane Search(int ID)
         {
-              var Search =  DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
-                 return Search;
+            var Search = DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
+            return Search;
         }
 
         public static void Delete()
@@ -140,7 +116,8 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nWprowadż ID do usunięcia: ");
             string ElementID = Console.ReadLine();
-            if (!ParseID(ElementID))
+            Parse parse = new Parse();
+            if (!parse.ParseID(ElementID))
             {
                 Select_Menu();
             }
@@ -169,24 +146,7 @@ namespace Konsola
             var ObiektDousuniecia1 = DaneNowe.IndexOf(ObiektDousuniecia);
             DaneNowe.RemoveAt(ObiektDousuniecia1);
         }
-        public static bool ParseID(string ID)
-        {
-
-            if (!int.TryParse(ID, out int a))
-            {
-                Console.Title = "Błąd - Wprowadzono nie poprawną wartość";
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\nWprowadzoną nie poprawną wartość...Naćiśnij dowolny klawisz aby powrócić do Menu..");
-                Console.ReadKey();
-                Console.Clear();
-                return false;
-            }
-            ID_Parse = a;
-            return true;
-
-
-        }
+     
         public static void MissingID()
         {
             Console.Title = "Błąd - Brak ID";
@@ -197,20 +157,7 @@ namespace Konsola
             Console.Clear();
             Select_Menu();
         }
-        public static bool ParseDate(string DataM)
-        {
-          
-            if (!DateTime.TryParse(DataM, out DateParse))
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Wprowadzono nie poprawny format daty!");
-                Console.WriteLine(Environment.NewLine);
-
-                return false;
-            }
-            return true;
-        }
+       
 
 
     }

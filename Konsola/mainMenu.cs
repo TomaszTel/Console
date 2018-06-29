@@ -10,7 +10,7 @@ namespace Konsola
     class MainMenus
     {
         public static int ID_Parse { get; set; }
-        static IList<Dane> DaneNowe;
+        static public IList<Dane> DaneNowe;
         public static DateTime DateParse;
         public const string confirmationY = "Y";
         public const string confirmationN = "N";
@@ -25,11 +25,7 @@ namespace Konsola
 
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
-            if (DaneNowe == null)
-            {
                 DaneNowe = new List<Dane>();
-             
-            }
              Select_Menu();
             
         }
@@ -57,7 +53,8 @@ namespace Konsola
                     List();
                     break;
                 case "2":
-                    ADD();
+                    Add add = new Add();
+                    add.ADD();
                     break;
                 case "3":
                     Edit SEdit = new Edit();
@@ -67,7 +64,8 @@ namespace Konsola
                     Delete();
                     break;
                 case "5":
-                    Preview();
+                    Preview preview = new Preview() ;
+                    preview.PreviewV();
                     break;
                 case "6":
                     Environment.Exit(0);
@@ -102,56 +100,7 @@ namespace Konsola
             }
         }
 
-        public static void ADD()
-        {
-
-            Console.Title = "Dodawanie rekordu";
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Enum_Menu.Menu.Dodawanie);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\nData: ");
-            string Data = Console.ReadLine();
-            if (!ParseDate(Data))
-            {
-                Select_Menu();
-            }
-
-            Console.Write("\nOpis: ");
-            string Opis = Console.ReadLine();
-
-            Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
-
-            string Potwierdzenie = Console.ReadLine();
-
-            if(Confitmation(Potwierdzenie))
-            {
-                int IDNew;
-                if (DaneNowe.Count == 0)
-                {
-                    IDNew = 1;
-                }
-                else
-                {
-                    IDNew = DaneNowe.Last().ID;
-                    IDNew++;
-                }
-
-                AddToClass(IDNew, DateParse, Opis);
-
-            }
-            else
-            {
-                Console.Clear();
-                Select_Menu();
-            }
-            Console.Clear();
-            Select_Menu();
-        }
-        public static void AddToClass(int ID, DateTime Data, string Opis)
-        {
-            Dane DaneN = new Dane(ID, Data, Opis);
-            DaneNowe.Add(DaneN);
-        }
+        
         public static void List()
         {
             Console.Title = "Lista rekordów";
@@ -181,45 +130,7 @@ namespace Konsola
               var Search =  DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
                  return Search;
         }
-        public static void Preview()
-        {
 
-            Console.Title = "Szczegóły rekordu";
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine(Enum_Menu.Menu.Podgląd);
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("\nWprowadz ID: ");
-            string ID = Console.ReadLine();
-
-            if (!ParseID(ID))
-            {
-                Select_Menu();
-            }
-            Dane SearchResoult = Search(ID_Parse);
-            if (SearchResoult == null)
-            {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("\nNie znaleziono Danych..{0}{0}", Environment.NewLine);
-                Console.ForegroundColor = ConsoleColor.Green;
-
-            }
-
-            
-                Console.Clear();
-                Console.WriteLine("ID:" + SearchResoult.ID);
-                Console.WriteLine("Data:" + SearchResoult.Data);
-                Console.WriteLine("Opis:" + SearchResoult.Opis);
-                Console.WriteLine(Environment.NewLine);
-            
-
-            Console.Write("\nNaciśnij dowolny klawisz aby powrócić..");
-            Console.ReadKey();
-            Console.Clear();
-            Select_Menu();
-
-        }
         public static void Delete()
         {
 

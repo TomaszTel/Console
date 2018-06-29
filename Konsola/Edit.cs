@@ -6,7 +6,6 @@ namespace Konsola
     {
         public void EdiRe()
         {
-
             Console.Title = "Edycja Rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(Enum_Menu.Menu.Edycja);
@@ -32,7 +31,7 @@ namespace Konsola
 
             if (!ParseDate(DataM))
             {
-                Edit();
+                EdiRe();
             }
 
             Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
@@ -42,14 +41,13 @@ namespace Konsola
             if (Confitmation(Potwierdzenie))
             {
                 ToRemove(ID_Parse);
-
-                AddToClass(ID_Parse, DateParse, OpisM);
+                Add add = new Add();
+                add.AddToClass(ID_Parse, DateParse, OpisM);
                 Console.Clear();
                 Select_Menu();
             }
             else
             {
-
                 Console.Clear();
                 Select_Menu();
             }

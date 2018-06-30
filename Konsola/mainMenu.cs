@@ -20,6 +20,9 @@ namespace Konsola
 
         static void Main()
         {
+            WriteJSON writeJSON = new WriteJSON();
+
+            writeJSON.CheckFolder();
 
             Enum_Menu Menu = new Enum_Menu();
             MenuClass menuClass = new MenuClass();

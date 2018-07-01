@@ -32,6 +32,7 @@ namespace Konsola
             catch (Exception a)
             {
                 Console.Clear();
+                Console.Title = "Error" + a.Message;
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(a);
                 Console.ReadKey();
@@ -45,6 +46,7 @@ namespace Konsola
             catch (Exception a)
             {
                 Console.Clear();
+                Console.Title = "Error" + a.Message;
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(a);
                 Console.ReadKey();
@@ -67,6 +69,7 @@ namespace Konsola
             catch (Exception a)
             {
                 Console.Clear();
+                Console.Title = "Error" + a.Message;
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(a);
                 Console.ReadKey();
@@ -97,6 +100,7 @@ namespace Konsola
             {
 
                 Console.Clear();
+                Console.Title = "Error" + a.Message;
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(a);
                 Console.ReadKey();

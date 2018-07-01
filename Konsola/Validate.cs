@@ -3,10 +3,16 @@ using System.Linq;
 
 namespace Konsola
 {
+
     class Validate : MainMenus
     {
 
-                    MenuClass menuClass = new MenuClass();
+        public const string confirmationY = "Y";
+        public const string confirmationN = "N";
+
+
+
+        MenuClass menuClass = new MenuClass();
 
         public void MissingID()
         {

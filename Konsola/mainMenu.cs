@@ -11,9 +11,7 @@ namespace Konsola
         public static int ID_Parse { get; set; }
         static public IList<Dane> DaneNowe;
         public static DateTime DateParse;
-        public const string confirmationY = "Y";
-        public const string confirmationN = "N";
-
+        
 
 
 

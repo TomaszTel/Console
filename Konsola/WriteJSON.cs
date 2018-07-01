@@ -13,7 +13,7 @@ namespace Konsola
     {
 
         public  string PatchFolder = Directory.GetCurrentDirectory().ToString()  + @"\Files";
-        public const string NameFile = "JSON_DANE.JSON";
+        public  string NameFile = "JSON_DANE.JSON";
         
         public void CheckFolder()
         {
@@ -79,6 +79,7 @@ namespace Konsola
         }
         public void JSON_Read()
         {
+
             var text = File.ReadAllText(PatchFolder + "/" + NameFile);
             IList<Dane> result = JsonConvert.DeserializeObject<IList<Dane>>(text);
             foreach(Dane JSON in result)

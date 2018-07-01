@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+
 
 namespace Konsola
 {
@@ -20,6 +19,8 @@ namespace Konsola
 
         static void Main()
         {
+            
+
             DaneNowe = new List<Dane>();
             WriteJSON writeJSON = new WriteJSON();
             writeJSON.CheckFolder();

@@ -5,10 +5,10 @@ namespace Konsola
     class DeleteC : MainMenus
     {
         Validate GetValidate = new Validate();
+        MenuClass menuClass = new MenuClass();
 
         public void Delete()
         {
-            MenuClass menuClass = new MenuClass();
             Console.Title = "Usuwanie rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine(Enum_Menu.Menu.Usuwanie);
@@ -50,6 +50,8 @@ namespace Konsola
             WriteJSON writeJSON = new WriteJSON();
             writeJSON.JSON_Create();
         }
+
+       
 
 
     }

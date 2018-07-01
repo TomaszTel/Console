@@ -13,7 +13,7 @@ namespace Konsola
             Usuwanie,
             Podgląd,
             Zakoncz,
-
+           
         }
     }
 }

@@ -24,7 +24,6 @@ namespace Konsola
             DaneNowe = new List<Dane>();
             WriteJSON writeJSON = new WriteJSON();
             writeJSON.CheckFolder();
-            Enum_Menu Menu = new Enum_Menu();
             MenuClass menuClass = new MenuClass();
             Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;

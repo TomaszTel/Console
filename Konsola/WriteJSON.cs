@@ -7,8 +7,6 @@ using System.IO;
 namespace Konsola
 {
 
-
-
     class WriteJSON : MainMenus
     {
 
@@ -42,6 +40,7 @@ namespace Konsola
         {
             try { 
             Directory.CreateDirectory(PatchFolder);
+                CheckFile();
             }
             catch (Exception a)
             {

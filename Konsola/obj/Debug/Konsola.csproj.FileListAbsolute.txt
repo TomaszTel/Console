@@ -12,3 +12,6 @@ C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csprojAssembl
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csproj.CoreCompileInputs.cache
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.exe
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.pdb
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csproj.CopyComplete

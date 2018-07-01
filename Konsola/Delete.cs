@@ -46,6 +46,9 @@ namespace Konsola
             Dane SearchIn = GetValidate.Search(DoUsuniecia);
             var ObiektDousuniecia1 = DaneNowe.IndexOf(SearchIn);
             DaneNowe.RemoveAt(ObiektDousuniecia1);
+
+            WriteJSON writeJSON = new WriteJSON();
+            writeJSON.JSON_Create();
         }
 
 

@@ -61,6 +61,8 @@ namespace Konsola
         {
             Dane DaneN = new Dane(ID, Data, Opis);
             DaneNowe.Add(DaneN);
+            WriteJSON writeJSON = new WriteJSON();
+            writeJSON.JSON_Create();
         }
 
     }

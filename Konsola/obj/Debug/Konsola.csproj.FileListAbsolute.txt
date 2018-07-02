@@ -18,3 +18,8 @@ C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csproj.CopyCo
 C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Konsola.exe.config
 C:\Users\tomtel\Documents\GIT\Console\Konsola\obj\Debug\Konsola.exe
 C:\Users\tomtel\Documents\GIT\Console\Konsola\obj\Debug\Konsola.pdb
+C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Konsola.exe
+C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Konsola.pdb
+C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tomtel\Documents\GIT\Console\Konsola\obj\Debug\Konsola.csprojResolveAssemblyReference.cache

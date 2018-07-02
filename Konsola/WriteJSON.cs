@@ -81,13 +81,16 @@ namespace Konsola
         }
         public void JSON_Read()
         {
-
-            var text = File.ReadAllText(PatchFolder + "/" + NameFile);
-            IList<Dane> result = JsonConvert.DeserializeObject<IList<Dane>>(text);
-            foreach(Dane JSON in result)
+            if (new FileInfo(PatchFolder + @"\" + NameFile).Length > 0)
             {
-                DaneNowe.Add(new Dane(JSON.ID,JSON.Data,JSON.Opis)); 
+                var text = File.ReadAllText(PatchFolder + "/" + NameFile);
+                IList<Dane> result = JsonConvert.DeserializeObject<IList<Dane>>(text);
+                foreach (Dane JSON in result)
+                {
+                    DaneNowe.Add(new Dane(JSON.ID, JSON.Data, JSON.Opis));
+                }
             }
+          
         }
         public void CreateFile()
         {

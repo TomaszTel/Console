@@ -15,3 +15,6 @@ C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.pdb
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Telwak\Documents\GitHub\Console\Konsola\obj\Debug\Konsola.csproj.CopyComplete
+C:\Users\tomtel\Documents\GIT\Console\Konsola\bin\Debug\Konsola.exe.config
+C:\Users\tomtel\Documents\GIT\Console\Konsola\obj\Debug\Konsola.exe
+C:\Users\tomtel\Documents\GIT\Console\Konsola\obj\Debug\Konsola.pdb

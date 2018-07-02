@@ -6,8 +6,9 @@ namespace Konsola
     {
         public bool ParseID(string ID)
         {
+            int a;
 
-            if (!int.TryParse(ID, out int a))
+            if (!int.TryParse(ID, out  a))
             {
                 Console.Title = "Błąd - Wprowadzono nie poprawną wartość";
                 Console.Clear();

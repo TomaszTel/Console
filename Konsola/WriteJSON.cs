@@ -86,7 +86,7 @@ namespace Konsola
             IList<Dane> result = JsonConvert.DeserializeObject<IList<Dane>>(text);
             foreach(Dane JSON in result)
             {
-                DaneNowe.Add(new Dane() {ID = JSON.ID , Data = JSON.Data, Opis = JSON.Opis}); 
+                DaneNowe.Add(new Dane(JSON.ID,JSON.Data,JSON.Opis)); 
             }
         }
         public void CreateFile()

@@ -18,9 +18,6 @@ namespace Konsola
             Opis = opis;
         }
 
-        public Dane()
-        {
-        }
     }
 
     

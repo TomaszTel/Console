@@ -35,7 +35,7 @@ namespace Konsola
 
         public bool Confitmation(string Key)
         {
-            if(Key.Length > 1 || Key == null)
+            if(Key.Length != 1 )
             {
                 NoSaveConf();
                 return false;

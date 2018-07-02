@@ -15,28 +15,36 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("\nWprowadż ID do usunięcia: ");
             string ElementID = Console.ReadLine();
-            Parse parse = new Parse();
-            if (!parse.ParseID(ElementID))
+            Console.Write("\nCzy na pewno chcesz usunąć rekord (Y/N)? ");
+            string Potwierdzenie = Console.ReadLine();
+            Validate validate = new Validate();
+
+            if (validate.Confitmation(Potwierdzenie))
             {
-                menuClass.Select_Menu();
+                Parse parse = new Parse();
+                if (!parse.ParseID(ElementID))
+                {
+                    menuClass.Select_Menu();
+                }
+
+                Dane ElementDoUsuniecia = GetValidate.Search(ID_Parse);
+                if (ElementDoUsuniecia != null)
+                {
+                    Console.Clear();
+                    ToRemove(ID_Parse);
+                    Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
+                    Console.ReadKey();
+                    Console.Clear();
+                    menuClass.Select_Menu();
+                }
+                else
+                {
+                    validate.MissingID();
+                }
+
             }
 
-            Dane ElementDoUsuniecia = GetValidate.Search(ID_Parse);
-            if (ElementDoUsuniecia != null)
-            {
-                Console.Clear();
-                ToRemove(ID_Parse);
-                Console.WriteLine("\nUsunięto Wpis o ID :" + ID_Parse);
-                Console.ReadKey();
-                Console.Clear();
-                menuClass.Select_Menu();
-            }
-            else
-            {
-                Validate validate = new Validate();
 
-                validate.MissingID();
-            }
 
 
         }

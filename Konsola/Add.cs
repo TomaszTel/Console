@@ -32,9 +32,9 @@ namespace Konsola
 
             string Potwierdzenie = Console.ReadLine();
             Validate validate = new Validate();
-            char Potw = Potwierdzenie[0];
+           
 
-            if (validate.Confitmation(Potw))
+            if (validate.Confitmation(Potwierdzenie))
             {
                 int IDNew;
                 if (DaneNowe.Count == 0)
@@ -50,11 +50,7 @@ namespace Konsola
                 AddToClass(IDNew, DateParse, Opis);
 
             }
-            else
-            {
-                Console.Clear();
-                menuClass.Select_Menu();
-            }
+         
             Console.Clear();
             menuClass.Select_Menu();
         }

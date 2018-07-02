@@ -25,9 +25,25 @@ namespace Konsola
             Console.Clear();
             menuClass.Select_Menu();
         }
-        public bool Confitmation(char Key)
+        public void NoSaveConf()
         {
-           char Upper = char.ToUpper(Key);
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
+            menuClass.Select_Menu();
+        }
+
+        public bool Confitmation(string Key)
+        {
+            if(Key.Length > 1 || Key == null)
+            {
+                NoSaveConf();
+                return false;
+            }
+
+            char Potw = Key[0];
+
+            char Upper = char.ToUpper(Potw);
 
             if (Upper == confirmationY)
             {
@@ -35,14 +51,12 @@ namespace Konsola
             }
             else if (Upper == confirmationN)
             {
+                NoSaveConf();
                 return false;
             }
             else
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("\n!!Nie potwierdzono zapisu.. Zmiany nie zostały zapisane!! {0}", Environment.NewLine);
-                menuClass.Select_Menu();
+                NoSaveConf();
                 return false;
             }
         }

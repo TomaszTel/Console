@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Konsola
 {
@@ -18,8 +20,11 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine("ID\t||Data\t        ||Opis\t");
             Console.ForegroundColor = ConsoleColor.Green;
-            foreach (var i in DaneNowe)
+            IList<Dane> OrderList = DaneNowe.OrderBy(i => i.ID).ToList();
+
+            foreach (var i in OrderList)
             {
+               
                 Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
             }
             Console.WriteLine(Environment.NewLine);

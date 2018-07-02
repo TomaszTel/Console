@@ -7,8 +7,8 @@ namespace Konsola
     class Validate : MainMenus
     {
 
-        public const string confirmationY = "Y";
-        public const string confirmationN = "N";
+        public const char confirmationY = 'Y';
+        public const char confirmationN = 'N';
 
 
 
@@ -25,13 +25,15 @@ namespace Konsola
             Console.Clear();
             menuClass.Select_Menu();
         }
-        public bool Confitmation(string Key)
+        public bool Confitmation(char Key)
         {
-            if (Key == confirmationY)
+           char Upper = char.ToUpper(Key);
+
+            if (Upper == confirmationY)
             {
                 return true;
             }
-            else if (Key == confirmationN)
+            else if (Upper == confirmationN)
             {
                 return false;
             }

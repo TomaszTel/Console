@@ -41,9 +41,10 @@ namespace Konsola
 
             Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
             string Potwierdzenie = Console.ReadLine();
+            char Potw = Potwierdzenie[0];
 
 
-            if (validate.Confitmation(Potwierdzenie))
+            if (validate.Confitmation(Potw))
             {
                 DeleteC delete = new DeleteC();                
                 delete.ToRemove(ID_Parse);

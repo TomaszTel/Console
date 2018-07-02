@@ -32,8 +32,9 @@ namespace Konsola
 
             string Potwierdzenie = Console.ReadLine();
             Validate validate = new Validate();
+            char Potw = Potwierdzenie[0];
 
-            if (validate.Confitmation(Potwierdzenie))
+            if (validate.Confitmation(Potw))
             {
                 int IDNew;
                 if (DaneNowe.Count == 0)

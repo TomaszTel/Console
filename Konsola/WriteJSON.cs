@@ -41,6 +41,7 @@ namespace Konsola
             }
             catch (Exception a)
             {
+                Validate validate = new Validate();
                 validate.Exception(a);
             }
         }

@@ -49,5 +49,13 @@ namespace Konsola
             var Search = DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
             return Search;
         }
+        public void Exception(Exception Ex)
+        {
+            Console.Clear();
+            Console.Title = "Error" + Ex.Message;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(Ex);
+            Console.ReadKey();
+        }
     }
 }

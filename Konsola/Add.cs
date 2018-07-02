@@ -57,9 +57,9 @@ namespace Konsola
             Console.Clear();
             menuClass.Select_Menu();
         }
-        public  void AddToClass(int ID, DateTime Data, string Opis)
+        public  void AddToClass(int ID, DateTime Date, string Opis)
         {
-            Dane DaneN = new Dane(ID, Data, Opis);
+            Dane DaneN = new Dane(ID, Date, Opis);
             DaneNowe.Add(DaneN);
             WriteJSON writeJSON = new WriteJSON();
             writeJSON.JSON_Create();

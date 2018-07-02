@@ -29,11 +29,8 @@ namespace Konsola
             }
             catch (Exception a)
             {
-                Console.Clear();
-                Console.Title = "Error" + a.Message;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(a);
-                Console.ReadKey();
+                Validate validate = new Validate();
+                validate.Exception(a);
             }
         }
         public void CreateFolder()
@@ -44,11 +41,7 @@ namespace Konsola
             }
             catch (Exception a)
             {
-                Console.Clear();
-                Console.Title = "Error" + a.Message;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(a);
-                Console.ReadKey();
+                validate.Exception(a);
             }
         }
         public void CheckFile()
@@ -67,11 +60,8 @@ namespace Konsola
             }   
             catch (Exception a)
             {
-                Console.Clear();
-                Console.Title = "Error" + a.Message;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(a);
-                Console.ReadKey();
+                Validate validate = new Validate();
+                validate.Exception(a);
             }
 }
         public void JSON_Create()
@@ -100,12 +90,8 @@ namespace Konsola
 
             }catch(Exception a)
             {
-
-                Console.Clear();
-                Console.Title = "Error" + a.Message;
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(a);
-                Console.ReadKey();
+                Validate validate = new Validate();
+                validate.Exception(a);
             }
         }
     }

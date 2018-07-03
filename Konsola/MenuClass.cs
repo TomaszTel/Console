@@ -7,6 +7,7 @@ namespace Konsola
 
         public  void Select_Menu()
         {
+            Console.Title = "Main Menu";
 
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("Main Menu:");

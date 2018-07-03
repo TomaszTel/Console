@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Konsola
@@ -65,12 +67,36 @@ namespace Konsola
             var Search = DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
             return Search;
         }
+        public bool SearchOpisData(string opis, DateTime Data)
+        {
+            int Search = DaneNowe.Where(r => r.Opis == opis && r.Data == Data).Count();
+
+            if(Search == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
         public void Exception(Exception Ex)
         {
             Console.Clear();
             Console.Title = "Error" + Ex.Message;
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Ex);
+            Console.ReadKey();
+        }
+        public void OpisVal(string Op, DateTime Data)
+        {
+            Console.Clear();
+            Console.Title = "Error";
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Istnieje rekord o Opisie: {0} Na datę: {1} Zmiany nie zostaną zapisane",Op,Data);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("{0}Naciśnij klawisz aby powrócić...", Environment.NewLine);
             Console.ReadKey();
         }
     }

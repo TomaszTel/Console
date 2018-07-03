@@ -47,10 +47,10 @@ namespace Konsola
 
             if (validate.Confitmation(Potwierdzenie))
             {
-                DeleteC delete = new DeleteC();                
-                delete.ToRemove(ID_Parse);
                 Add add = new Add();
                 add.AddToClass(ID_Parse, DateParse, OpisM);
+                DeleteC delete = new DeleteC();                
+                delete.ToRemove(ID_Parse); 
                 Console.Clear();
                 menuClass.Select_Menu();
             }

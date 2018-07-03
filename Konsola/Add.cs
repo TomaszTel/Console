@@ -5,6 +5,7 @@ namespace Konsola
 {
     class Add : MainMenus
     {
+        Validate validate = new Validate();
 
         public void ADD()
         {
@@ -31,7 +32,6 @@ namespace Konsola
             Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
 
             string Potwierdzenie = Console.ReadLine();
-            Validate validate = new Validate();
            
 
             if (validate.Confitmation(Potwierdzenie))
@@ -56,11 +56,19 @@ namespace Konsola
         }
         public  void AddToClass(int ID, DateTime Date, string Opis)
         {
+           if(!validate.SearchOpisData(Opis,Date))
+            {
+                validate.OpisVal(Opis,Date);
+            }
+            else
+            {
+                Dane DaneN = new Dane(ID, Date, Opis);
+                DaneNowe.Add(DaneN);
+                WriteJSON writeJSON = new WriteJSON();
+                writeJSON.JSON_Create();
+            }
 
-            Dane DaneN = new Dane(ID, Date, Opis);
-            DaneNowe.Add(DaneN);
-            WriteJSON writeJSON = new WriteJSON();
-            writeJSON.JSON_Create();
+           
         }
 
     }

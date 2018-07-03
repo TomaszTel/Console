@@ -23,7 +23,6 @@ namespace Konsola
             WriteJSON writeJSON = new WriteJSON();
             writeJSON.CheckFolder();
             MenuClass menuClass = new MenuClass();
-            Console.Title = "Main Menu";
             Console.ForegroundColor = ConsoleColor.Green;
             menuClass.Select_Menu();
             

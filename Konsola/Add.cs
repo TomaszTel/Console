@@ -46,8 +46,16 @@ namespace Konsola
                     IDNew = DaneNowe.Last().ID;
                     IDNew++;
                 }
+                if (!validate.SearchOpisData(Opis, DateParse))
+                {
+                    validate.OpisDatVal(Opis, DateParse);
+                }
+                else
+                {
+                    AddToClass(IDNew, DateParse, Opis);
 
-                AddToClass(IDNew, DateParse, Opis);
+                }
+
 
             }
          
@@ -56,20 +64,16 @@ namespace Konsola
         }
         public  void AddToClass(int ID, DateTime Date, string Opis)
         {
-           if(!validate.SearchOpisData(Opis,Date))
-            {
-                validate.OpisVal(Opis,Date);
-            }
-            else
-            {
+           
                 Dane DaneN = new Dane(ID, Date, Opis);
                 DaneNowe.Add(DaneN);
                 WriteJSON writeJSON = new WriteJSON();
                 writeJSON.JSON_Create();
-            }
+            
 
            
         }
+        
 
     }
 }

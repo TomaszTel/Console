@@ -88,8 +88,9 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Ex);
             Console.ReadKey();
+            
         }
-        public void OpisVal(string Op, DateTime Data)
+        public void OpisDatVal(string Op, DateTime Data)
         {
             Console.Clear();
             Console.Title = "Error";
@@ -98,6 +99,7 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("{0}Naciśnij klawisz aby powrócić...", Environment.NewLine);
             Console.ReadKey();
+            Console.Clear();
         }
     }
 }

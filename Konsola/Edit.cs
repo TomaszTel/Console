@@ -47,12 +47,23 @@ namespace Konsola
 
             if (validate.Confitmation(Potwierdzenie))
             {
-                Add add = new Add();
-                add.AddToClass(ID_Parse, DateParse, OpisM);
-                DeleteC delete = new DeleteC();                
-                delete.ToRemove(ID_Parse); 
-                Console.Clear();
-                menuClass.Select_Menu();
+                if (!validate.SearchOpisData(OpisM, DateParse))
+                {
+                    validate.OpisDatVal(OpisM, DateParse);
+                    
+                    menuClass.Select_Menu();
+
+                }
+                else
+                {
+                    DeleteC delete = new DeleteC();
+                    delete.ToRemove(ID_Parse);
+                    Add add = new Add();
+                    add.AddToClass(ID_Parse, DateParse, OpisM);
+                    Console.Clear();
+                    menuClass.Select_Menu();
+                }
+           
             }
 
 

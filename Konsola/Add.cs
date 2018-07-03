@@ -56,6 +56,7 @@ namespace Konsola
         }
         public  void AddToClass(int ID, DateTime Date, string Opis)
         {
+
             Dane DaneN = new Dane(ID, Date, Opis);
             DaneNowe.Add(DaneN);
             WriteJSON writeJSON = new WriteJSON();

@@ -25,7 +25,7 @@ namespace Konsola
             Console.Clear();
             menuClass.Select_Menu();
         }
-        public void NoSaveConf()
+        private void NoSaveConf()
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;

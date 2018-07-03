@@ -33,7 +33,7 @@ namespace Konsola
                 validate.Exception(a);
             }
         }
-        public void CreateFolder()
+        private void CreateFolder()
         {
             try { 
             Directory.CreateDirectory(PatchFolder);
@@ -45,7 +45,7 @@ namespace Konsola
                 validate.Exception(a);
             }
         }
-        public void CheckFile()
+        private void CheckFile()
         {
             try
             {
@@ -70,7 +70,7 @@ namespace Konsola
             string json = JsonConvert.SerializeObject(DaneNowe);
             File.WriteAllText(PatchFolder + "/" + NameFile, json);   
         }
-        public void JSON_Read()
+        private void JSON_Read()
         {
             if (new FileInfo(PatchFolder + @"\" + NameFile).Length > 0)
             {
@@ -83,7 +83,7 @@ namespace Konsola
             }
           
         }
-        public void CreateFile()
+        private void CreateFile()
         {
             try
             {

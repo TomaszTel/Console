@@ -6,10 +6,10 @@ namespace Konsola
     class Add : MainMenus
     {
         Validate validate = new Validate();
+        MenuClass menuClass = new MenuClass();
 
         public void ADD()
         {
-            MenuClass menuClass = new MenuClass();
 
             Console.Title = "Dodawanie rekordu";
             Console.ForegroundColor = ConsoleColor.Magenta;
@@ -32,8 +32,12 @@ namespace Konsola
             Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
 
             string Potwierdzenie = Console.ReadLine();
-           
 
+            Val(Potwierdzenie,Opis,Data);
+
+        }
+        protected void Val(string Potwierdzenie, string Opis, string Data)
+        {
             if (validate.Confitmation(Potwierdzenie))
             {
                 int IDNew;
@@ -58,7 +62,7 @@ namespace Konsola
 
 
             }
-         
+
             Console.Clear();
             menuClass.Select_Menu();
         }

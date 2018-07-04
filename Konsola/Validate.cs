@@ -69,9 +69,8 @@ namespace Konsola
         }
         public bool SearchOpisData(string opis, DateTime Data)
         {
-            int Search = DaneNowe.Where(r => r.Opis == opis && r.Data == Data).Count();
-
-            if(Search == 0)
+          
+         if(DaneNowe.Where(r => r.Opis == opis && r.Data == Data).Count() == 0)
             {
                 return true;
             }

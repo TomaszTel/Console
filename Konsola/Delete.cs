@@ -17,12 +17,17 @@ namespace Konsola
             string ElementID = Console.ReadLine();
             Console.Write("\nCzy na pewno chcesz usunąć rekord (Y/N)? ");
             string Potwierdzenie = Console.ReadLine();
+            valDel(Potwierdzenie,ElementID);
+            
+        }
+        protected void valDel(string Potwierdzenie,string ID)
+        {
             Validate validate = new Validate();
 
             if (validate.Confitmation(Potwierdzenie))
             {
                 Parse parse = new Parse();
-                if (!parse.ParseID(ElementID))
+                if (!parse.ParseID(ID))
                 {
                     menuClass.Select_Menu();
                 }
@@ -43,10 +48,6 @@ namespace Konsola
                 }
 
             }
-
-
-
-
         }
         public void ToRemove(int DoUsuniecia)
         {

@@ -4,10 +4,11 @@ namespace Konsola
 {
     class Edit: MainMenus
     {
+        Validate validate = new Validate();
+        MenuClass menuClass = new MenuClass();
+
         public void EdiRe()
         {
-            MenuClass menuClass = new MenuClass();
-            Validate validate = new Validate();
 
 
             Console.Title = "Edycja Rekordu";
@@ -41,16 +42,17 @@ namespace Konsola
 
             Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
             string Potwierdzenie = Console.ReadLine();
-            
-         
-
-
+            ValEdi(Potwierdzenie,OpisM); 
+   
+        }
+        protected void ValEdi(string Potwierdzenie,string OpisM)
+        {
             if (validate.Confitmation(Potwierdzenie))
             {
                 if (!validate.SearchOpisData(OpisM, DateParse))
                 {
                     validate.OpisDatVal(OpisM, DateParse);
-                    
+
                     menuClass.Select_Menu();
 
                 }
@@ -63,10 +65,8 @@ namespace Konsola
                     Console.Clear();
                     menuClass.Select_Menu();
                 }
-           
+
             }
-
-
         }
     }
 }

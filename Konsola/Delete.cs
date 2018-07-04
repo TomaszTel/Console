@@ -16,15 +16,15 @@ namespace Konsola
             Console.Write("\nWprowadż ID do usunięcia: ");
             string ElementID = Console.ReadLine();
             Console.Write("\nCzy na pewno chcesz usunąć rekord (Y/N)? ");
-            string Potwierdzenie = Console.ReadLine();
+            char Potwierdzenie = Console.ReadKey().KeyChar;
             valDel(Potwierdzenie,ElementID);
             
         }
-        protected void valDel(string Potwierdzenie,string ID)
+        protected void valDel(char Potwierdzenie,string ID)
         {
             Validate validate = new Validate();
 
-            if (validate.Confitmation(Potwierdzenie))
+            if (validate.Confirmation(Potwierdzenie))
             {
                 Parse parse = new Parse();
                 if (!parse.ParseID(ID))

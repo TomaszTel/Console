@@ -27,8 +27,6 @@ namespace Konsola
            
             if (!DateTime.TryParse(DataM, out DateParse))
             {
-                
-
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Wprowadzono nie poprawny format daty!");

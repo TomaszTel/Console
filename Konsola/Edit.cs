@@ -41,13 +41,13 @@ namespace Konsola
             }
 
             Console.Write("\nCzy na pewno chcesz zmodyfikować wpis (Y/N)?");
-            string Potwierdzenie = Console.ReadLine();
+            char Potwierdzenie = Console.ReadKey().KeyChar;
             ValEdi(Potwierdzenie,OpisM); 
    
         }
-        protected void ValEdi(string Potwierdzenie,string OpisM)
+        protected void ValEdi(char potwierdzenie,string OpisM)
         {
-            if (validate.Confitmation(Potwierdzenie))
+            if (validate.Confirmation(potwierdzenie))
             {
                 if (!validate.SearchOpisData(OpisM, DateParse))
                 {

@@ -31,14 +31,14 @@ namespace Konsola
 
             Console.Write("\nCzy na pewno chcesz dodać rekord (Y/N)? ");
 
-            string Potwierdzenie = Console.ReadLine();
+            char potwierdzenie = char.ToUpper(Console.ReadKey().KeyChar);
 
-            Val(Potwierdzenie,Opis,Data);
+            Val(potwierdzenie,Opis,Data);
 
         }
-        protected void Val(string Potwierdzenie, string Opis, string Data)
+        protected void Val(char potwierdzenie, string opis, string data)
         {
-            if (validate.Confitmation(Potwierdzenie))
+            if (validate.Confirmation(potwierdzenie))
             {
                 int IDNew;
                 if (DaneNowe.Count == 0)
@@ -50,13 +50,13 @@ namespace Konsola
                     IDNew = DaneNowe.Last().ID;
                     IDNew++;
                 }
-                if (!validate.SearchOpisData(Opis, DateParse))
+                if (!validate.SearchOpisData(opis, DateParse))
                 {
-                    validate.OpisDatVal(Opis, DateParse);
+                    validate.OpisDatVal(opis, DateParse);
                 }
                 else
                 {
-                    AddToClass(IDNew, DateParse, Opis);
+                    AddToClass(IDNew, DateParse, opis);
 
                 }
 

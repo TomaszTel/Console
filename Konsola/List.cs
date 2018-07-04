@@ -24,8 +24,8 @@ namespace Konsola
 
             foreach (var i in OrderList)
             {
-               
-                Console.Write("{0}\t||{1}\t||{2}\t{3}", i.ID, i.Data, i.Opis, Environment.NewLine);
+                Console.WriteLine($"{i.ID}\t||{i.Data.ToShortDateString()}\t||{i.Opis}\t");
+                //Console.WriteLine(string.Format("{0}\t||{1}\t||{2}\t", i.ID, i.Data, i.Opis));
             }
             Console.WriteLine(Environment.NewLine);
 
@@ -36,7 +36,7 @@ namespace Konsola
 
             menuClass.Select_Menu();
         }
-        
+
 
     }
 }

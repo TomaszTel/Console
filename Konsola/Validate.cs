@@ -35,23 +35,19 @@ namespace Konsola
             menuClass.Select_Menu();
         }
 
-        public bool Confitmation(string Key)
+        public bool Confirmation(char key)
         {
-            if(Key.Length != 1 )
-            {
-                NoSaveConf();
-                return false;
-            }
 
-            char Potw = Key[0];
 
-            char Upper = char.ToUpper(Potw);
+            char potwierdzenie = key;
 
-            if (Upper == confirmationY)
+            char upper = char.ToUpper(potwierdzenie);
+
+            if (upper == confirmationY)
             {
                 return true;
             }
-            else if (Upper == confirmationN)
+            else if (upper == confirmationN)
             {
                 NoSaveConf();
                 return false;
@@ -64,21 +60,11 @@ namespace Konsola
         }
         public Dane Search(int ID)
         {
-            var Search = DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
-            return Search;
+            return DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
         }
         public bool SearchOpisData(string opis, DateTime Data)
         {
-          
-         if(DaneNowe.Where(r => r.Opis == opis && r.Data == Data).Count() == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
+            return DaneNowe.Any(r => r.Opis == opis && r.Data == Data);
         }
         public void Exception(Exception Ex)
         {
@@ -87,14 +73,14 @@ namespace Konsola
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(Ex);
             Console.ReadKey();
-            
+
         }
         public void OpisDatVal(string Op, DateTime Data)
         {
             Console.Clear();
             Console.Title = "Error";
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Istnieje rekord o Opisie: {0} Na datę: {1} Zmiany nie zostaną zapisane",Op,Data);
+            Console.WriteLine("Istnieje rekord o Opisie: {0} Na datę: {1} Zmiany nie zostaną zapisane", Op, Data);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("{0}Naciśnij klawisz aby powrócić...", Environment.NewLine);
             Console.ReadKey();

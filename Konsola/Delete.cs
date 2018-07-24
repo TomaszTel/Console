@@ -2,9 +2,9 @@
 
 namespace Konsola
 {
-    class DeleteC : MainMenus
+    class DeleteC
     {
-        Validate GetValidate = new Validate();
+        Validate GetValidate = new Validate(DaneNowe);
         MenuClass menuClass = new MenuClass();
 
         public void Delete()

@@ -2,7 +2,7 @@
 
 namespace Konsola
 {
-    class Preview : MainMenus
+    class Preview
     {
 
         public  void PreviewV()

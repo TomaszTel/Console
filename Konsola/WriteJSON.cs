@@ -41,8 +41,7 @@ namespace Konsola
             }
             catch (Exception a)
             {
-                Validate validate = new Validate();
-                validate.Exception(a);
+                LogHelper.LogException(a);
             }
         }
         private void CheckFile()
@@ -76,6 +75,7 @@ namespace Konsola
             {
                 var text = File.ReadAllText(PatchFolder + "/" + NameFile);
                 IList<Dane> result = JsonConvert.DeserializeObject<IList<Dane>>(text);
+                // Odrazu masz kolekcje
                 foreach (Dane JSON in result)
                 {
                     DaneNowe.Add(new Dane(JSON.ID, JSON.Data, JSON.Opis));

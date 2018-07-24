@@ -5,8 +5,13 @@ namespace Konsola
 {
     class Add : MainMenus
     {
-        Validate validate = new Validate();
-        MenuClass menuClass = new MenuClass();
+        private Validate validate;
+        private MenuClass menuClass;
+
+        public Add()
+        {
+
+        }
 
         public void ADD()
         {

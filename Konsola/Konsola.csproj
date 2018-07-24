@@ -53,6 +53,7 @@
     <Compile Include="Edit.cs" />
     <Compile Include="Enum_Menu.cs" />
     <Compile Include="List.cs" />
+    <Compile Include="LogHelper.cs" />
     <Compile Include="mainMenu.cs" />
     <Compile Include="MenuClass.cs" />
     <Compile Include="Parse.cs" />

@@ -2,7 +2,7 @@
 
 namespace Konsola
 {
-    class MenuClass : MainMenus
+    class MenuClass
     {
 
         public void Select_Menu()

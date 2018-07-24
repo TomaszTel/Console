@@ -6,10 +6,16 @@ using System.Linq;
 namespace Konsola
 {
 
-    class Validate : MainMenus
+    class Validate
     {
+        public IList<Dane> Dane { get; set; }
 
-        public const char confirmationY = 'Y';
+        public Validate(IList<Dane> dane)
+        {
+            Dane = dane;
+        }
+
+        public const char confirmatoinY = 'Y';
         public const char confirmationN = 'N';
 
 
@@ -60,22 +66,14 @@ namespace Konsola
         }
         public Dane Search(int ID)
         {
-            return DaneNowe.Where(r => r.ID == ID).FirstOrDefault();
+            return Dane.Where(r => r.ID == ID).FirstOrDefault();
         }
         public bool SearchOpisData(string opis, DateTime Data)
         {
-            return DaneNowe.Any(r => r.Opis == opis && r.Data == Data);
+            return Dane.Any(r => r.Opis == opis && r.Data == Data);
         }
-        public void Exception(Exception Ex)
-        {
-            Console.Clear();
-            Console.Title = "Error" + Ex.Message;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(Ex);
-            Console.ReadKey();
-
-        }
-        public void OpisDatVal(string Op, DateTime Data)
+       
+        public static void OpisDatVal(string Op, DateTime Data)
         {
             Console.Clear();
             Console.Title = "Error";
